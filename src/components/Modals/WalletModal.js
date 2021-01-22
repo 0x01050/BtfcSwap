@@ -1,6 +1,6 @@
 import React from 'react'
 import CountUp from 'react-countup';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from '@windmill/react-ui'
+import { Modal, ModalBody, Button } from '@windmill/react-ui'
 import walletContainer from '../../redux/containers/wallet'
 import WavesConfig from '../../config/waves'
 
