@@ -2,7 +2,6 @@ import React from 'react'
 import CountUp from 'react-countup';
 import { Modal, ModalBody, Button } from '@windmill/react-ui'
 import walletContainer from '../../redux/containers/wallet'
-import WavesConfig from '../../config/waves'
 
 function WalletModal({isOpen, onClose, walletState}) {
   return (
@@ -14,9 +13,7 @@ function WalletModal({isOpen, onClose, walletState}) {
         <p className="mt-4">SUSHI Balance</p>
         <div className="flex flex-col items-center justify-end space-x-0 space-y-4 w-full mt-8">
           <Button className="w-full" layout="outline" onClick={() => onClose(1)}>
-            <a href={WavesConfig.EXPLORER_URL + walletState.address} target="__blank">
-              View on WavesExplorer
-            </a>
+            View on WavesExplorer
           </Button>
           <Button className="w-full" layout="outline" onClick={() => onClose(2)}>
             Sign out

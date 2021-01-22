@@ -6,11 +6,12 @@ import Header from '../components/Header'
 import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import WalletModal from '../components/Modals/WalletModal'
+import WavesConfig from '../config/waves';
 import walletContainer from '../redux/containers/wallet'
 
 const Page404 = lazy(() => import('../pages/404'))
 
-function Layout({walletActions}) {
+function Layout({walletState, walletActions}) {
   const [ isWalletOpen, setWallet ] = useState(false)
 
   const openWallet = () => {
@@ -18,7 +19,7 @@ function Layout({walletActions}) {
   }
   const closeWallet = (mode) => {
     if(mode === 1) {
-      // View on Etherscan
+      window.open(WavesConfig.EXPLORER_URL + walletState.address, "_blank")
     }
     if(mode === 2) {
       lockWallet()
