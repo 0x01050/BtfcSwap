@@ -10,7 +10,7 @@ function WalletModal({isOpen, onClose, walletState}) {
         <p className="text-xl font-semibold mb-8">My Account</p>
         <CountUp end={walletState.balance} decimals={8} duration={0.5}
           className="text-3xl font-bold text-gray-700 dark:text-gray-200"/>
-        <p className="mt-4">SUSHI Balance</p>
+        <p className="mt-4">Waves Balance</p>
         <div className="flex flex-col items-center justify-end space-x-0 space-y-4 w-full mt-8">
           <Button className="w-full" layout="outline" onClick={() => onClose(1)}>
             View on WavesExplorer
