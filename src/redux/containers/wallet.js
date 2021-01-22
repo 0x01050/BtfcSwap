@@ -12,7 +12,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   walletActions: {
-    unlockWallet: (address, balance) => dispatch(ACTIONS.unlockWallet(address, balance))
+    unlockWallet: (address, balance) => dispatch(ACTIONS.unlockWallet(address, balance)),
+    lockWallet: () => dispatch(ACTIONS.lockWallet()),
   }
 });
 

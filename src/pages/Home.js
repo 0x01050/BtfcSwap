@@ -1,37 +1,21 @@
 import React from 'react'
 
-import InfoCard from '../components/Cards/InfoCard'
-import RoundIcon from '../components/RoundIcon'
-import PageTitle from '../components/Typography/PageTitle'
-import { PeopleIcon } from '../icons'
+import HomeCard from '../components/Cards/HomeCard'
 import walletContainer from '../redux/containers/wallet';
 
 function Home({walletState, walletActions}) {
 
   return (
     <>
-      <PageTitle>Home</PageTitle>
-      <div className="grid mt-8">
-        {
-          walletState.locked ?
-            <InfoCard title="Locked">
-              <RoundIcon
-                icon={PeopleIcon}
-                iconColorClass="text-orange-500 dark:text-orange-100"
-                bgColorClass="bg-orange-100 dark:bg-orange-500"
-                className="mr-4"
-              />
-            </InfoCard>
-          :
-            <InfoCard title={walletState.address} value={walletState.balance}>
-              <RoundIcon
-                icon={PeopleIcon}
-                iconColorClass="text-orange-500 dark:text-orange-100"
-                bgColorClass="bg-orange-100 dark:bg-orange-500"
-                className="mr-4"
-              />
-            </InfoCard>
-        }
+      <div className="grid mt-8 gap-6 xl:grid-cols-2">
+          <HomeCard
+            title="Your SUSHI Balance" value={walletState.locked ? "Locked" : walletState.balance} decimals={8}
+            extraTitle="Pending harvest" extraValue="0.000 SUSHI"
+          />
+          <HomeCard
+            title="Total SUSHI Supply" value={walletState.locked ? "Locked" : 183802607}
+            extraTitle="New rewards per block" extraValue="60 SUSHI"
+          />
       </div>
     </>
   )

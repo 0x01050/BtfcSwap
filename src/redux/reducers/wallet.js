@@ -10,7 +10,6 @@ const defaultState = {
 const walletReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ACTIONS.Types.UNLOCK_WALLET: {
-      console.log(action);
       let { address, balance } = action.payload;
       let newState = _.cloneDeep(state);
       newState.locked = false;
@@ -18,7 +17,11 @@ const walletReducer = (state = defaultState, action) => {
       newState.balance = balance;
       return newState;
     }
-
+    case ACTIONS.Types.LOCK_WALLET: {
+      let newState = _.cloneDeep(state);
+      newState.locked = true;
+      return newState;
+    }
     default:
       return state;
   }

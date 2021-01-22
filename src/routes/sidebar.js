@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/app/menu',
     icon: 'FormsIcon',
-    name: 'menu',
+    name: 'Menu',
   },
   {
     path: '/app/staking',
