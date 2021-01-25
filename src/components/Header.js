@@ -29,8 +29,14 @@ function Header({walletState, walletActions, walletOpen}) {
       const provider = new Provider(WavesConfig.PROVIDER_URL)
       waves.setProvider(provider)
       const user = await waves.login()
-      const balance = await waves.getBalance()
-      walletActions.unlockWallet(user.address, balance[0].amount / 100000000)
+      const balances = await waves.getBalance()
+      var balance = 0
+      balances.forEach(item => {
+        if(item.assetId === WavesConfig.TOKEN_ID) {
+          balance = item.amount / (10 ** WavesConfig.TOKEN_DECIMALS)
+        }
+      })
+      walletActions.unlockWallet(user.address, balance)
     } catch(e) {
       console.error(e)
     }
