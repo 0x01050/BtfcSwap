@@ -5,7 +5,7 @@ import { Button, WindmillContext } from '@windmill/react-ui'
 import Waves from '@waves/signer'
 import Provider from '@waves.exchange/provider-web'
 
-import WavesSwapLogo from '../assets/img/wavesswap-logo.png'
+import BtfcSwapLogo from '../assets/img/btfcswap.png'
 import * as Icons from '../icons'
 import {
   MoonIcon,
@@ -49,7 +49,7 @@ function Header({walletState, walletActions, walletOpen}) {
           aria-hidden="true"
           className="mr-8 object-cover hidden lg:block"
           style={{height: 64}}
-          src={WavesSwapLogo}
+          src={BtfcSwapLogo}
           alt="Office"
         />
         
