@@ -1,7 +1,7 @@
 {
-  "name": "wavesswap-dashboard",
+  "name": "btfcswap-dashboard",
   "version": "1.0.0",
-  "description": "WavesSwap - An Evolution over Waves",
+  "description": "BtfcSwap - An Evolution over Btfc",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
