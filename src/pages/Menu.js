@@ -4,7 +4,7 @@ import InfoCard from '../components/Cards/InfoCard'
 import RoundIcon from '../components/RoundIcon'
 import PageTitle from '../components/Typography/PageTitle'
 import { PeopleIcon } from '../icons'
-import walletContainer from '../redux/containers/wallet';
+import walletContainer from '../redux/containers/wallet'
 
 function Menu({walletState, walletActions}) {
 
@@ -23,7 +23,7 @@ function Menu({walletState, walletActions}) {
               />
             </InfoCard>
           :
-            <InfoCard title={walletState.address} value={walletState.balance}>
+            <InfoCard title={walletState.address} value={walletState.btfc_balance}>
               <RoundIcon
                 icon={PeopleIcon}
                 iconColorClass="text-orange-500 dark:text-orange-100"

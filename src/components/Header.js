@@ -2,18 +2,15 @@ import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button, WindmillContext } from '@windmill/react-ui'
 
-import Waves from '@waves/signer'
-import Provider from '@waves.exchange/provider-web'
-
 import BtfcSwapLogo from '../assets/img/btfcswap.png'
 import * as Icons from '../icons'
 import {
   MoonIcon,
   SunIcon,
 } from '../icons'
-import walletContainer from '../redux/containers/wallet';
+import walletContainer from '../redux/containers/wallet'
 import routes from '../routes/sidebar'
-import WavesConfig from '../config/waves'
+import WalletUtils from '../utils/waves'
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon]
@@ -22,25 +19,6 @@ function Icon({ icon, ...props }) {
 
 function Header({walletState, walletActions, walletOpen}) {
   const { mode, toggleMode } = useContext(WindmillContext)
-
-  const unlockWallet = async  () => {
-    try {
-      const waves = new Waves({NODE_URL: WavesConfig.NODE_URL})
-      const provider = new Provider(WavesConfig.PROVIDER_URL)
-      waves.setProvider(provider)
-      const user = await waves.login()
-      const balances = await waves.getBalance()
-      var balance = 0
-      balances.forEach(item => {
-        if(item.assetId === WavesConfig.TOKEN_ID) {
-          balance = item.amount / (10 ** WavesConfig.TOKEN_DECIMALS)
-        }
-      })
-      walletActions.unlockWallet(user.address, balance)
-    } catch(e) {
-      console.error(e)
-    }
-  }
 
   return (
     <header className="z-40 py-2 bg-white shadow-bottom dark:bg-gray-800">
@@ -68,12 +46,12 @@ function Header({walletState, walletActions, walletOpen}) {
             </li>
           )}
           <div className="flex justify-end flex-1 lg:mr-32">
-            <Button onClick={walletState.locked ? unlockWallet : walletOpen} size="small" className="px-5 py-2 hidden lg:block">
+            <Button onClick={walletState.locked ? () => WalletUtils.unlockWallet(walletActions.unlockWallet) : walletOpen} size="small" className="px-5 py-2 hidden lg:block">
               {walletState.locked ? "Unlock Wallet" : "My Wallet"}
             </Button>
             <button
               className="rounded-md focus:outline-none focus:shadow-outline-purple block lg:hidden"
-              onClick={walletState.locked ? unlockWallet : walletOpen}
+              onClick={walletState.locked ? () => WalletUtils.unlockWallet(walletActions.unlockWallet) : walletOpen}
               aria-label="Toggle color mode"
             >
               {walletState.locked ? (

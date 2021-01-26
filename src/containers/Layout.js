@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import WalletModal from '../components/Modals/WalletModal'
-import WavesConfig from '../config/waves';
+import WavesConfig from '../config/waves'
 import walletContainer from '../redux/containers/wallet'
 
 const Page404 = lazy(() => import('../pages/404'))
@@ -27,7 +27,7 @@ function Layout({walletState, walletActions}) {
     setWallet(false)
   }
   const lockWallet = () => {
-    walletActions.lockWallet();
+    walletActions.lockWallet()
   }
 
   return (

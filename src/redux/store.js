@@ -1,11 +1,13 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers } from "redux"
 
-import walletReducer from "./reducers/wallet";
+import walletReducer from "./reducers/wallet"
+import stakingReducer from "./reducers/staking"
 
 export default function configureStore(initialState) {
   const reducer = combineReducers({
-    walletReducer
-  });
-  const store = createStore(reducer, initialState);
-  return store;
+    walletReducer,
+    stakingReducer
+  })
+  const store = createStore(reducer, initialState)
+  return store
 }

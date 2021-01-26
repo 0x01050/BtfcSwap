@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardBody } from '@windmill/react-ui'
-import CountUp from 'react-countup';
+import CountUp from 'react-countup'
 
 function HomeCard({ title, value, decimals, extraTitle, extraValue }) {
   return (

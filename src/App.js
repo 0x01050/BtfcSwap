@@ -1,10 +1,10 @@
 import React, { lazy } from 'react'
-import { Provider as ReduxProvider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux"
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import AccessibleNavigationAnnouncer from './components/AccessibleNavigationAnnouncer'
-import configureStore from "./redux/store";
+import configureStore from "./redux/store"
 
-const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
+const reduxStore = configureStore(window.REDUX_INITIAL_DATA)
 
 const Layout = lazy(() => import('./containers/Layout'))
 const Login = lazy(() => import('./pages/Login'))

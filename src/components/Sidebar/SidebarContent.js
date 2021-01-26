@@ -3,20 +3,13 @@ import routes from '../../routes/sidebar'
 import { NavLink, Route } from 'react-router-dom'
 import * as Icons from '../../icons'
 import SidebarSubmenu from './SidebarSubmenu'
-import { Button } from '@windmill/react-ui'
-
-import walletContainer from '../../redux/containers/wallet';
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon]
   return <Icon {...props} />
 }
 
-function SidebarContent({walletState, walletActions}) {
-  
-  const unlockWallet = () => {
-    walletActions.unlockWallet('test', 123);
-  }
+function SidebarContent() {
 
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
@@ -48,14 +41,9 @@ function SidebarContent({walletState, walletActions}) {
           )
         )}
       </ul>
-      <div className="px-6 my-6">
-        <Button onClick={walletState.locked ? unlockWallet : null}>
-          {walletState.locked ? "Unlock Wallet" : "My Wallet"}
-        </Button>
-      </div>
     </div>
   )
 
 }
 
-export default walletContainer(SidebarContent)
+export default SidebarContent
