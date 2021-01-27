@@ -5,7 +5,6 @@ const path = require('path')
 const transactions = require("./routes/api/transactions")
 
 const db = require("./config/keys").mongoURI
-console.log(db)
 mongoose
   .connect(
     db,
