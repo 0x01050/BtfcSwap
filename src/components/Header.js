@@ -10,7 +10,7 @@ import {
 } from '../icons'
 import walletContainer from '../redux/containers/wallet'
 import routes from '../routes/sidebar'
-import WalletUtils from '../utils/waves'
+import WavestUtils from '../utils/waves'
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon]
@@ -46,12 +46,12 @@ function Header({walletState, walletActions, walletOpen}) {
             </li>
           )}
           <div className="flex justify-end flex-1 lg:mr-32">
-            <Button onClick={walletState.locked ? () => WalletUtils.unlockWallet(walletActions.unlockWallet) : walletOpen} size="small" className="px-5 py-2 hidden lg:block">
+            <Button onClick={walletState.locked ? () => WavestUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet) : walletOpen} size="small" className="px-5 py-2 hidden lg:block">
               {walletState.locked ? "Unlock Wallet" : "My Wallet"}
             </Button>
             <button
               className="rounded-md focus:outline-none focus:shadow-outline-purple block lg:hidden"
-              onClick={walletState.locked ? () => WalletUtils.unlockWallet(walletActions.unlockWallet) : walletOpen}
+              onClick={walletState.locked ? () => WavestUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet) : walletOpen}
               aria-label="Toggle color mode"
             >
               {walletState.locked ? (

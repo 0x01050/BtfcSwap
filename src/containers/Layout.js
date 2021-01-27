@@ -1,4 +1,4 @@
-import React, { Suspense, useState, lazy } from 'react'
+import React, { Suspense, useEffect, useState, lazy } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import routes from '../routes'
 
@@ -8,11 +8,27 @@ import ThemedSuspense from '../components/ThemedSuspense'
 import WalletModal from '../components/Modals/WalletModal'
 import WavesConfig from '../config/waves'
 import walletContainer from '../redux/containers/wallet'
+import WavestUtils from '../utils/waves'
 
 const Page404 = lazy(() => import('../pages/404'))
 
 function Layout({walletState, walletActions}) {
   const [ isWalletOpen, setWallet ] = useState(false)
+  
+  useEffect(() => {
+    let interval = -1
+    if(!walletState.locked) {
+      interval = setInterval(() => {
+        WavestUtils.getBalance(walletActions.setBalance, walletActions.lockWallet)
+      }, 1000)
+    }
+  
+    return () => {
+      if(interval > -1) {
+        clearInterval(interval)
+      }
+    }
+  }, [walletState.locked, walletState.waves, walletActions])
 
   const openWallet = () => {
     setWallet(true)

@@ -11,17 +11,23 @@ const defaultState = {
 const walletReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ACTIONS.Types.UNLOCK_WALLET: {
-      let { address, btfc_balance, waves_balance } = action.payload
+      let { address } = action.payload
       let newState = _.cloneDeep(state)
       newState.locked = false
       newState.address = address
-      newState.btfc_balance = btfc_balance
-      newState.waves_balance = waves_balance
       return newState
     }
     case ACTIONS.Types.LOCK_WALLET: {
       let newState = _.cloneDeep(state)
       newState.locked = true
+      window.waves = null
+      return newState
+    }
+    case ACTIONS.Types.SET_BALANCE: {
+      let { btfc_balance, waves_balance } = action.payload
+      let newState = _.cloneDeep(state)
+      newState.btfc_balance = btfc_balance
+      newState.waves_balance = waves_balance
       return newState
     }
     default:

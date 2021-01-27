@@ -4,7 +4,6 @@ import ACTIONS from "../actions/staking"
 
 const mapStateToProps = state => ({
   stakingState: {
-    approved: state.stakingReducer.approved,
     earned: state.stakingReducer.earned,
     staked: state.stakingReducer.staked,
   }
@@ -12,7 +11,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   stakingActions: {
-    approve: () => dispatch(ACTIONS.approve()),
     deposit: (amount) => dispatch(ACTIONS.deposit(amount)),
     withdraw: (amount) => dispatch(ACTIONS.withdraw(amount)),
     earn: (amount) => dispatch(ACTIONS.earn(amount)),

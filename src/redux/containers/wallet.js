@@ -13,8 +13,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   walletActions: {
-    unlockWallet: (address, btfc_balance, waves_balance) => dispatch(ACTIONS.unlockWallet(address, btfc_balance, waves_balance)),
+    unlockWallet: (address) => dispatch(ACTIONS.unlockWallet(address)),
     lockWallet: () => dispatch(ACTIONS.lockWallet()),
+    setBalance: (btfc_balance, waves_balance) => dispatch(ACTIONS.setBalance(btfc_balance, waves_balance)),
   }
 })
 
