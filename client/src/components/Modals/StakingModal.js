@@ -21,7 +21,7 @@ function StakingModal({isOpen, onClose, title, maximum}) {
     setAmount('')
   }, [isOpen])
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={() => onClose()}>
       <ModalBody>
         <p className="text-center text-xl font-semibold mb-8">{title} BTFC</p>
         <p className="mt-4 text-right">{maximum} BTFC Available</p>
@@ -44,7 +44,7 @@ function StakingModal({isOpen, onClose, title, maximum}) {
           </button>
         </div>
         <div className="space-x-4 mt-8 grid grid-cols-2">
-          <Button layout="outline" className="text-green-400 dark:text-green-200" onClick={onClose}>
+          <Button layout="outline" className="text-green-400 dark:text-green-200" onClick={() => onClose()}>
             Cancel
           </Button>
           <Button layout="outline" className="text-yellow-400 dark:text-yellow-200" onClick={makeTransaction}>

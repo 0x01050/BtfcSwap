@@ -2,42 +2,17 @@ import ACTIONS from "../actions/staking"
 import _ from "lodash"
 
 const defaultState = {
-  earned: 0,
   staked: 0,
+  earned: 0,
 }
 
 const stakingReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ACTIONS.Types.DEPOSIT: {
-      let { amount } = action.payload
+    case ACTIONS.Types.SET_BALANCE: {
+      let { staked, earned } = action.payload
       let newState = _.cloneDeep(state)
-      if(parseFloat(amount) > 0) {
-        newState.staked += parseFloat(amount)
-      }
-      return newState
-    }
-    case ACTIONS.Types.WITHDRAW: {
-      let { amount } = action.payload
-      let newState = _.cloneDeep(state)
-      if(parseFloat(amount) > 0 && newState.staked >= parseFloat(amount)) {
-        newState.staked -= parseFloat(amount)
-      }
-      return newState
-    }
-    case ACTIONS.Types.EARN: {
-      let { amount } = action.payload
-      let newState = _.cloneDeep(state)
-      if(parseFloat(amount) > 0) {
-        newState.earned += parseFloat(parseFloat(amount))
-      }
-      return newState
-    }
-    case ACTIONS.Types.SETTLE: {
-      let { amount } = action.payload
-      let newState = _.cloneDeep(state)
-      if(parseFloat(amount) > 0 && newState.earned >= parseFloat(amount)) {
-        newState.earned -= parseFloat(amount)
-      }
+      newState.staked = staked
+      newState.earned = earned
       return newState
     }
     default:

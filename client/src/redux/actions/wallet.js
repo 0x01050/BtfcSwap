@@ -21,5 +21,5 @@ export default {
   unlockWallet,
   lockWallet,
   setBalance,
-  Types,
+  Types
 }

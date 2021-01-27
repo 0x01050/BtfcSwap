@@ -7,7 +7,7 @@ import PageTitle from '../components/Typography/PageTitle'
 import WavesConfig from '../config/waves'
 import stakingContainer from '../redux/containers/staking'
 import walletContainer from '../redux/containers/wallet'
-import WavestUtils from '../utils/waves'
+import WavesUtils from '../utils/waves'
 
 function Staking({walletState, walletActions, stakingState, stakingActions}) {
   const [ modal, setModal ] = useState({
@@ -22,7 +22,7 @@ function Staking({walletState, walletActions, stakingState, stakingActions}) {
       isOpen: true,
       title: 'Deposit',
       maximum: walletState.btfc_balance,
-      callback: stakingActions.deposit
+      callback: WavesUtils.deposit
     })
   }
   const withdraw = () => {
@@ -30,16 +30,20 @@ function Staking({walletState, walletActions, stakingState, stakingActions}) {
       isOpen: true,
       title: 'Withdraw',
       maximum: stakingState.staked,
-      callback: stakingActions.withdraw
+      callback: WavesUtils.withdraw
     })
   }
   const settle = () => {
-    stakingActions.settle(stakingState.earned)
-    // stakingActions.settle(Math.random() / 10000)
+    setModal({
+      isOpen: true,
+      title: 'Settle',
+      maximum: stakingActions.earned,
+      callback: WavesUtils.settle
+    })
   }
   const closeModal = (amount) => {
     if(amount && modal.callback) {
-      modal.callback(amount)
+      modal.callback(walletState.address, amount)
     }
     setModal({
       isOpen: false
@@ -51,7 +55,7 @@ function Staking({walletState, walletActions, stakingState, stakingActions}) {
       <PageTitle>Earn BTFC by BTFC</PageTitle>
       {
         walletState.locked ?
-          <Button size="small" className="px-5 py-2" onClick={() => WavestUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>
+          <Button size="small" className="px-5 py-2" onClick={() => WavesUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>
             Unlock Wallet
           </Button>
           

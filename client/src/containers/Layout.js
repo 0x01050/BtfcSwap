@@ -7,19 +7,22 @@ import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import WalletModal from '../components/Modals/WalletModal'
 import WavesConfig from '../config/waves'
+import stakingContainer from '../redux/containers/staking'
 import walletContainer from '../redux/containers/wallet'
-import WavestUtils from '../utils/waves'
+import ApiUtils from '../utils/api'
+import WavesUtils from '../utils/waves'
 
 const Page404 = lazy(() => import('../pages/404'))
 
-function Layout({walletState, walletActions}) {
+function Layout({walletState, walletActions, stakingActions}) {
   const [ isWalletOpen, setWallet ] = useState(false)
   
   useEffect(() => {
     let interval = -1
     if(!walletState.locked) {
       interval = setInterval(() => {
-        WavestUtils.getBalance(walletActions.setBalance, walletActions.lockWallet)
+        WavesUtils.getBalance(walletActions.setBalance, walletActions.lockWallet)
+        ApiUtils.getBalance(walletState.address, stakingActions.setBalance)
       }, 1000)
     }
   
@@ -28,7 +31,7 @@ function Layout({walletState, walletActions}) {
         clearInterval(interval)
       }
     }
-  }, [walletState.locked, walletState.waves, walletActions])
+  }, [walletState.locked, walletState.address, walletActions, stakingActions])
 
   const openWallet = () => {
     setWallet(true)
@@ -77,4 +80,4 @@ function Layout({walletState, walletActions}) {
   )
 }
 
-export default walletContainer(Layout)
+export default stakingContainer(walletContainer(Layout))
