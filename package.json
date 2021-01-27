@@ -19,7 +19,6 @@
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "cross-env": "^7.0.3",
-    "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.3.0",

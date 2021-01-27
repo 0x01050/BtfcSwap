@@ -23,10 +23,12 @@
     "@waves.exchange/provider-web": "0.0.2",
     "@waves/signer": "0.0.3",
     "@windmill/react-ui": "0.3.1",
-    "btfcswap-dashboard": "file:..",
+    "autoprefixer": "9.8.0",
     "chart.js": "2.9.3",
     "classnames": "2.2.6",
+    "cross-env": "7.0.2",
     "faker": "4.1.0",
+    "postcss-cli": "7.1.1",
     "react": "^16.13.1",
     "react-chartjs-2": "2.9.0",
     "react-countup": "^4.3.3",
@@ -36,20 +38,17 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
     "react-transition-group": "4.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "tailwindcss": "1.4.6"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "1.1.4",
     "@svgr/webpack": "5.4.0",
-    "autoprefixer": "9.8.0",
     "commitizen": "4.1.2",
-    "cross-env": "7.0.2",
     "cssnano": "4.1.10",
     "cz-conventional-changelog": "3.2.0",
-    "postcss-cli": "7.1.1",
     "react-axe": "3.5.2",
-    "release-it": "13.6.4",
-    "tailwindcss": "1.4.6"
+    "release-it": "13.6.4"
   },
   "keywords": [
     "waves",
