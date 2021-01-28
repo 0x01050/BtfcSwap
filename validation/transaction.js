@@ -7,7 +7,7 @@ module.exports = function validateTransactionInput(data) {
   data.sender     = !isEmpty(data.sender)     ? data.sender     : ''
   data.recipient  = !isEmpty(data.recipient)  ? data.recipient  : ''
   data.type       = !isEmpty(data.type)       ? data.type       : ''
-  data.amount     = !isEmpty(data.amount)     ? data.amount     : ''
+  data.amount     = !isEmpty(data.amount)     ? data.amount + '': ''
 
   if (Validator.isEmpty(data.sender)) {
     errors.sender = 'Sender field is required'

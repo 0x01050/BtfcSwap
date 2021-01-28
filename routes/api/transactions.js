@@ -38,7 +38,7 @@ router.post('/post', async (req, res) => {
     return res.status(200).json(result)
   } catch(e) {
     console.error(e)
-    res.status(500)
+    return res.status(500)
   }
 })
 router.post('/balance', async (req, res) => {
