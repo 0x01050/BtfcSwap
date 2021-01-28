@@ -55,6 +55,10 @@ const makeTransactionAndSave = async (sender, recipient, type, amount, charge) =
     }, SEED)
     
     broadcast(signedTranserTx, NodeURL)
+      .catch(e => {
+        console.error(e)
+        Transaction.remove({transactionID: signedTranserTx.id}).exec()
+      })
     signedTranserTx.sender = POOL_ADDRESS
     if(!checkTransaction(sender, recipient, amount, signedTranserTx)) {
       return {
