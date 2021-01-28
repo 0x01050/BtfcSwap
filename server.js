@@ -3,6 +3,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const path = require('path')
 const transactions = require("./routes/api/transactions")
+const keys = require('./config/keys')
 
 const db = require("./config/keys").mongoURI
 mongoose
@@ -28,3 +29,7 @@ app.use("/api/transactions", transactions)
 const port = process.env.PORT || 5000
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`))
+
+Object.keys(keys).forEach(function(key) {
+  console.log(key + " : " + keys[key])
+})
