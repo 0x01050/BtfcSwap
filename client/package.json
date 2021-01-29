@@ -34,7 +34,6 @@
     "multicoin-address-validator": "^0.4.16",
     "postcss-cli": "7.1.1",
     "react": "^16.13.1",
-    "react-avatar": "^3.9.7",
     "react-chartjs-2": "2.9.0",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",

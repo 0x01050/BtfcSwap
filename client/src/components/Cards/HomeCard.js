@@ -27,7 +27,7 @@ function HomeCard({ title, value, decimals, extraTitle, extraValue, extraOption,
             :
               <>
                 <p>{extraValue}</p>
-                <p>&nbsp;WAVES</p>
+                <p>&nbsp;USD</p>
               </>
           }
         </div>

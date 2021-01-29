@@ -1,9 +1,9 @@
 import React from 'react'
-import Avatar from 'react-avatar'
 import CountUp from 'react-countup'
 import { Button, Card, CardBody } from '@windmill/react-ui'
 
-import WavesLogo from '../assets/img/waves.svg'
+import BTFCLogo from '../assets/img/btfc.png'
+import WAVELogo from '../assets/img/waves.svg'
 import PageTitle from '../components/Typography/PageTitle'
 import walletContainer from '../redux/containers/wallet'
 import WavesUtils from '../utils/waves'
@@ -27,7 +27,7 @@ function Wallet({walletState, walletActions}) {
                   <img
                     aria-hidden="true"
                     className="hidden object-cover w-full h-full dark:block"
-                    src={WavesLogo}
+                    src={WAVELogo}
                     style={{width: 32, height: 32}}
                     alt="W"
                   />
@@ -40,7 +40,13 @@ function Wallet({walletState, walletActions}) {
             <Card>
               <CardBody className='flex w-full flex-col'>
                 <div className='mb-2 pb-5 flex items-center'>
-                  <Avatar name={"BTFC"} size={32} round={true} />
+                  <img
+                    aria-hidden="true"
+                    className="hidden object-cover w-full h-full dark:block"
+                    src={BTFCLogo}
+                    style={{width: 32, height: 32}}
+                    alt="W"
+                  />
                   <span className='dark:text-white font-semibold text-2xl ml-4'>BTFC</span>
                 </div>
                 <CountUp end={walletState.btfc_balance} separator=', ' decimals={WavesConfig.TOKEN_DECIMALS} duration={0.5}
