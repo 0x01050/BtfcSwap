@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { Button, Input, Label, Modal, ModalBody, Textarea } from '@windmill/react-ui'
 import WAValidator from 'multicoin-address-validator'
+import WavesConfig from '../../config/waves'
 import walletContainer from '../../redux/containers/wallet'
 import WavesUtils from '../../utils/waves'
+
 
 function SendModal({isOpen, onClose, walletState}) {
   const [address, setAddress] = useState('')
@@ -22,7 +24,7 @@ function SendModal({isOpen, onClose, walletState}) {
       const sendAmount = parseFloat(amount)
       if(isNaN(sendAmount) || sendAmount <= 0 || sendAmount > walletState.btfc_balance)
         return true
-      if(!WAValidator.validate(address, 'waves', 'testnet'))
+      if(!WAValidator.validate(address, 'waves', WavesConfig.WAVES_PLATFORM))
         return true
       return false
     } catch(e) {

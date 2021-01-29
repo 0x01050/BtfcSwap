@@ -1,11 +1,20 @@
 require('dotenv').config()
+const NodeUrls = {
+  'testnet': 'https://nodes-testnet.wavesnodes.com',
+  'prod': 'https://nodes.wavesexplorer.com'
+}
+const ChainIDs = {
+  'testnet': 'T',
+  'prod': 'W'
+}
+const platform = process.env.REACT_APP_WAVES_PLATFORM
 module.exports = {
-  chainID: process.env.CHAIN_ID,
-  mongoURI: process.env.MONGO_URI,
-  decimals: process.env.REACT_APP_TOKEN_ASSET_DECIMALS,
+  nodeUrl: NodeUrls[platform],
   assetID: process.env.REACT_APP_TOKEN_ASSET_ID,
+  decimals: process.env.REACT_APP_TOKEN_ASSET_DECIMALS,
   poolAddr: process.env.REACT_APP_TOKEN_POOL,
-  nodeUrl: process.env.REACT_APP_WAVES_NODE_URL,
+  chainID: ChainIDs[platform],
+  mongoURI: process.env.MONGO_URI,
   secretKey: process.env.SECRET_KEY,
   seed: process.env.SEED,
 }
