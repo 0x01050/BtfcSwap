@@ -25,7 +25,6 @@ const getBalance = async (callback, error_callback) => {
   try {
     if(window.waves) {
       const balances = await window.waves.getBalance()
-      console.log(balances)
       var btfc_balance = 0, waves_balance = 0
       balances.forEach(item => {
         if(item.assetId === WavesConfig.TOKEN_ID) {
@@ -36,7 +35,7 @@ const getBalance = async (callback, error_callback) => {
         }
       })
       if(callback) {
-        callback(btfc_balance, waves_balance)
+        callback(btfc_balance, waves_balance, balances)
       }
     }
   } catch(e) {

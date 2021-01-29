@@ -1,38 +1,42 @@
 import React from 'react'
+import Avatar from 'react-avatar'
+import CountUp from 'react-countup'
+import { Button, Card, CardBody } from '@windmill/react-ui'
 
-import InfoCard from '../components/Cards/InfoCard'
-import RoundIcon from '../components/RoundIcon'
 import PageTitle from '../components/Typography/PageTitle'
-import { PeopleIcon } from '../icons'
 import walletContainer from '../redux/containers/wallet'
+import WavesUtils from '../utils/waves'
 
 function Wallet({walletState, walletActions}) {
-
   return (
     <>
-      <PageTitle>Menu</PageTitle>
-      <div className="grid mt-8">
-        {
-          walletState.locked ?
-            <InfoCard title="Locked">
-              <RoundIcon
-                icon={PeopleIcon}
-                iconColorClass="text-orange-500 dark:text-orange-100"
-                bgColorClass="bg-orange-100 dark:bg-orange-500"
-                className="mr-4"
-              />
-            </InfoCard>
-          :
-            <InfoCard title={walletState.address} value={walletState.btfc_balance}>
-              <RoundIcon
-                icon={PeopleIcon}
-                iconColorClass="text-orange-500 dark:text-orange-100"
-                bgColorClass="bg-orange-100 dark:bg-orange-500"
-                className="mr-4"
-              />
-            </InfoCard>
-        }
-      </div>
+      <PageTitle>Wallet</PageTitle>
+      {
+        walletState.locked ?
+          <Button size="small" className="px-5 py-2" onClick={() => WavesUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>
+            Unlock Wallet
+          </Button>
+          
+        :
+          <div className='grid mt-8 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            {
+              walletState.balances.map((asset, index) => {
+                return (
+                  <Card key={index}>
+                    <CardBody className='flex w-full flex-col'>
+                      <div className='mb-2 pb-5 flex items-center'>
+                        <Avatar name={asset.assetName} size={32} round={true} />
+                        <span className='dark:text-white font-semibold text-2xl ml-4'>{asset.assetName}</span>
+                      </div>
+                      <CountUp end={asset.amount / (10 ** asset.decimals)} separator=', ' decimals={asset.decimals} duration={0.5}
+                        className='text-xl font-semibold text-gray-700 dark:text-gray-200'/>
+                    </CardBody>
+                  </Card>
+                )
+              })
+            }
+          </div>
+      }
     </>
   )
 }
