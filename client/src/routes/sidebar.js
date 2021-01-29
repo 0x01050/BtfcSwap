@@ -8,17 +8,17 @@
 const routes = [
   {
     path: '/app/home',
-    icon: 'HomeIcon',
     name: 'Home',
   },
   {
-    path: '/app/menu',
-    icon: 'FormsIcon',
-    name: 'Menu',
+    path: '/app/wallet',
+    name: 'Wallet',
+  },
+  {
+    name: 'Send',
   },
   {
     path: '/app/staking',
-    icon: 'CardsIcon',
     name: 'Staking',
   },
   

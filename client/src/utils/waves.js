@@ -1,5 +1,6 @@
 import Waves from '@waves/signer'
 import Provider from '@waves.exchange/provider-web'
+import {base58Encode, stringToBytes} from '@waves/ts-lib-crypto'
 
 import WavesConfig from '../config/waves'
 import ApiUtils from './api'
@@ -24,6 +25,7 @@ const getBalance = async (callback, error_callback) => {
   try {
     if(window.waves) {
       const balances = await window.waves.getBalance()
+      console.log(balances)
       var btfc_balance = 0, waves_balance = 0
       balances.forEach(item => {
         if(item.assetId === WavesConfig.TOKEN_ID) {
@@ -76,10 +78,24 @@ const settle = async (recipient, amount) => {
     console.error(e)
   }
 }
+const send = async (recipient, amount, hasDesc, description) => {
+  if(window.waves) {
+    let transfer = {
+      recipient: recipient,
+      amount: amount * (10 ** WavesConfig.TOKEN_DECIMALS),
+      assetId: WavesConfig.TOKEN_ID,
+    }
+    if(hasDesc) {
+      transfer.attachment = base58Encode(stringToBytes(description))
+    }
+    await window.waves.transfer(transfer).broadcast()
+  }
+}
 export default {
   unlockWallet,
   getBalance,
   deposit,
   withdraw,
   settle,
+  send,
 }

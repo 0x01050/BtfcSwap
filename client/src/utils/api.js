@@ -25,7 +25,19 @@ const getBalance = (address, callback) => {
       console.error(err)
     })
 }
+const getPrice = (callback) => {
+  axios
+    .get('https://api.coingecko.com/api/v3/coins/bitcoin-flash-cash')
+    .then(res => {
+      try {
+        callback(res.data.market_data.current_price.usd)
+      } catch(e) {
+
+      }
+    })
+}
 export default {
   postTransaction,
   getBalance,
+  getPrice,
 }

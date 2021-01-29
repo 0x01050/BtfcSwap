@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody } from '@windmill/react-ui'
 import CountUp from 'react-countup'
 
-function HomeCard({ title, value, decimals, extraTitle, extraValue }) {
+function HomeCard({ title, value, decimals, extraTitle, extraValue, extraOption, extraDecimals }) {
   return (
     <Card>
       <CardBody className="flex w-full flex-col">
@@ -18,7 +18,18 @@ function HomeCard({ title, value, decimals, extraTitle, extraValue }) {
         <div className="flex text-sm font-medium text-gray-600 dark:text-gray-400">
           <p>{extraTitle}</p>
           <div className="flex-1"/>
-          <p>{extraValue}</p>
+          {
+            extraOption === 'CountUp' ?
+              <>
+                <CountUp end={extraValue} separator=", " decimals={extraDecimals} duration={0.5} />
+                <p>&nbsp;BTFC</p>
+              </>
+            :
+              <>
+                <p>{extraValue}</p>
+                <p>&nbsp;WAVES</p>
+              </>
+          }
         </div>
       </CardBody>
     </Card>

@@ -6,6 +6,7 @@ const defaultState = {
   address: '',
   btfc_balance: 0,
   waves_balance: 0,
+  balances: [],
 }
 
 const walletReducer = (state = defaultState, action) => {
@@ -24,10 +25,11 @@ const walletReducer = (state = defaultState, action) => {
       return newState
     }
     case ACTIONS.Types.SET_BALANCE: {
-      let { btfc_balance, waves_balance } = action.payload
+      let { btfc_balance, waves_balance, balances } = action.payload
       let newState = _.cloneDeep(state)
       newState.btfc_balance = btfc_balance
       newState.waves_balance = waves_balance
+      newState.balances = balances
       return newState
     }
     default:

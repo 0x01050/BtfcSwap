@@ -12,9 +12,9 @@ const unlockWallet = (address) => ({
 const lockWallet = () => ({
   type: Types.LOCK_WALLET
 })
-const setBalance = (btfc_balance, waves_balance) => ({
+const setBalance = (btfc_balance, waves_balance, balances) => ({
   type: Types.SET_BALANCE,
-  payload: { btfc_balance, waves_balance }
+  payload: { btfc_balance, waves_balance, balances }
 })
 
 export default {

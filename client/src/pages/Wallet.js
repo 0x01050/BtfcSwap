@@ -6,7 +6,7 @@ import PageTitle from '../components/Typography/PageTitle'
 import { PeopleIcon } from '../icons'
 import walletContainer from '../redux/containers/wallet'
 
-function Menu({walletState, walletActions}) {
+function Wallet({walletState, walletActions}) {
 
   return (
     <>
@@ -37,4 +37,4 @@ function Menu({walletState, walletActions}) {
   )
 }
 
-export default walletContainer(Menu)
+export default walletContainer(Wallet)

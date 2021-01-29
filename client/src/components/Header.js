@@ -17,7 +17,7 @@ function Icon({ icon, ...props }) {
   return <Icon {...props} />
 }
 
-function Header({walletState, walletActions, walletOpen}) {
+function Header({walletState, walletActions, walletOpen, sendOpen}) {
   const { mode, toggleMode } = useContext(WindmillContext)
 
   return (
@@ -34,15 +34,31 @@ function Header({walletState, walletActions, walletOpen}) {
         <ul className="flex items-center flex-1 space-x-6">
           {routes.map((route) =>
             <li className="relative px-2 py-1" key={route.name}>
-              <NavLink
-                exact
-                to={route.path}
-                className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-purple-600 dark:hover:text-purple-300"
-                activeClassName="text-purple-600 dark:text-purple-300"
-              >
-                {/* <Icon className="w-5 h-5" aria-hidden="true" icon={route.icon} /> */}
-                <span >{route.name}</span>
-              </NavLink>
+              {
+                route.path ?
+                  <NavLink
+                    exact
+                    to={route.path}
+                    className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-purple-600 dark:hover:text-purple-300"
+                    activeClassName="text-purple-600 dark:text-purple-300"
+                  >
+                    {/* <Icon className="w-5 h-5" aria-hidden="true" icon={route.icon} /> */}
+                    <span >{route.name}</span>
+                  </NavLink>
+                :
+                  <span
+                    className={
+                      walletState.locked ?
+                        "inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 text-gray-300 dark:text-gray-600"
+                      :
+                        "inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-purple-600 dark:hover:text-purple-300"
+                    }
+                    style={{cursor: 'pointer'}}
+                    onClick={walletState.locked ? null : sendOpen}
+                  >
+                    {route.name}
+                  </span>
+              }
             </li>
           )}
           <div className="flex justify-end flex-1 lg:mr-32">

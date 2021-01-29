@@ -5,6 +5,7 @@ import routes from '../routes'
 import Header from '../components/Header'
 import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
+import SendModal from '../components/Modals/SendModal'
 import WalletModal from '../components/Modals/WalletModal'
 import WavesConfig from '../config/waves'
 import stakingContainer from '../redux/containers/staking'
@@ -16,6 +17,7 @@ const Page404 = lazy(() => import('../pages/404'))
 
 function Layout({walletState, walletActions, stakingActions}) {
   const [ isWalletOpen, setWallet ] = useState(false)
+  const [ isSendOpen, setSend ] = useState(false)
   
   useEffect(() => {
     let interval = -1
@@ -48,6 +50,12 @@ function Layout({walletState, walletActions, stakingActions}) {
   const lockWallet = () => {
     walletActions.lockWallet()
   }
+  const openSend = () => {
+    setSend(true)
+  }
+  const closeSend = () => {
+    setSend(false)
+  }
 
   return (
     <div
@@ -55,7 +63,7 @@ function Layout({walletState, walletActions, stakingActions}) {
     >
 
       <div className="flex flex-col flex-1 w-full">
-        <Header walletOpen={openWallet} />
+        <Header walletOpen={openWallet} sendOpen={openSend} />
         <Main>
           <Suspense fallback={<ThemedSuspense />}>
             <Switch>
@@ -75,6 +83,7 @@ function Layout({walletState, walletActions, stakingActions}) {
           </Suspense>
         </Main>
         <WalletModal isOpen={isWalletOpen} onClose={closeWallet} />
+        <SendModal isOpen={isSendOpen} onClose={closeSend} />
       </div>
     </div>
   )
