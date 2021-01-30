@@ -21,7 +21,10 @@ const routes = [
     path: '/app/staking',
     name: 'Staking',
   },
-  
+  {
+    path: '/app/faucet',
+    name: 'Faucet',
+  },  
 ]
 
 export default routes

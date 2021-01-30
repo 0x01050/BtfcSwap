@@ -17,7 +17,7 @@ module.exports = function validateTransactionInput(data) {
   }
   if (Validator.isEmpty(data.type)) {
     errors.type = 'Type field is required'
-  } else if (data.type != 'deposit' && data.type != 'withdraw' && data.type != 'earn' && data.type != 'settle') {
+  } else if (data.type != 'deposit' && data.type != 'withdraw' && data.type != 'earn' && data.type != 'settle' && data.type != 'faucet') {
     errors.type = 'Type is invalid'
   }
   if (Validator.isEmpty(data.amount)) {

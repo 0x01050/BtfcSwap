@@ -4,6 +4,7 @@ import { lazy } from 'react'
 const Home = lazy(() => import('../pages/Home'))
 const Wallet = lazy(() => import('../pages/Wallet'))
 const Staking = lazy(() => import('../pages/Staking'))
+const Faucet = lazy(() => import('../pages/Faucet'))
 
 /**
  * ⚠ These are internal routes!
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/staking',
     component: Staking
+  },
+  {
+    path: '/faucet',
+    component: Faucet
   },
 ]
 

@@ -26,7 +26,7 @@ function Wallet({walletState, walletActions}) {
                 <div className='mb-2 pb-5 flex items-center'>
                   <img
                     aria-hidden="true"
-                    className="hidden object-cover w-full h-full dark:block"
+                    className="object-cover w-full h-full"
                     src={WAVELogo}
                     style={{width: 32, height: 32}}
                     alt="W"
@@ -42,7 +42,7 @@ function Wallet({walletState, walletActions}) {
                 <div className='mb-2 pb-5 flex items-center'>
                   <img
                     aria-hidden="true"
-                    className="hidden object-cover w-full h-full dark:block"
+                    className="object-cover w-full h-full"
                     src={BTFCLogo}
                     style={{width: 32, height: 32}}
                     alt="W"

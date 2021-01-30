@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const postTransaction = (sender, recipient, type, amount, transactionID = '') => {
+const postTransaction = (sender, recipient, type, amount = -1, transactionID = '') => {
   axios
     .post('/api/transactions/post', {
       sender, recipient, type, amount, transactionID
@@ -36,8 +36,24 @@ const getPrice = (callback) => {
       }
     })
 }
+const getFaucet = (address, callback) => {
+  axios
+    .post('/api/transactions/faucet', {address})
+    .then(res => {
+      const {msg} = res.data
+      if(msg === 'success') {
+        const {faucet} = res.data
+        if(callback) {
+          callback(faucet)
+        }
+      }
+    }).catch(err => {
+      console.error(err)
+    })
+}
 export default {
   postTransaction,
   getBalance,
   getPrice,
+  getFaucet,
 }

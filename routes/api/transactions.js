@@ -4,7 +4,7 @@ const router = express.Router()
 const POOL_ADDRESS = require('../../config/keys').poolAddr
 const SecretKey = require('../../config/keys').secretKey
 const TransactionUtils = require('../../utils/transaction')
-const validateBalanceInput = require('../../validation/balance')
+const validateAddressInput = require('../../validation/address')
 const validateTransactionInput = require('../../validation/transaction')
 
 router.post('/post', async (req, res) => {
@@ -34,6 +34,10 @@ router.post('/post', async (req, res) => {
           return res.status(403)
         }
         break
+      case 'faucet':
+        amount = 0.00025
+        result = await TransactionUtils.makeTransactionAndSave(sender, recipient, type, amount)
+        break
     }
     return res.status(200).json(result)
   } catch(e) {
@@ -43,13 +47,28 @@ router.post('/post', async (req, res) => {
 })
 router.post('/balance', async (req, res) => {
   try {
-    const { errors, isValid } = validateBalanceInput(req.body)
+    const { errors, isValid } = validateAddressInput(req.body)
     if (!isValid) {
       return res.status(400).json(errors)
     }
 
     const {address} = req.body
     result = await TransactionUtils.getBalance(address)
+    return res.status(200).json(result)
+  } catch(e) {
+    console.error(e)
+    return res.status(500)
+  }
+})
+router.post('/faucet', async (req, res) => {
+  try {
+    const { errors, isValid } = validateAddressInput(req.body)
+    if (!isValid) {
+      return res.status(400).json(errors)
+    }
+
+    const {address} = req.body
+    result = await TransactionUtils.getFaucetStatus(address)
     return res.status(200).json(result)
   } catch(e) {
     console.error(e)

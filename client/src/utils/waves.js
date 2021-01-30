@@ -90,6 +90,9 @@ const send = async (recipient, amount, hasDesc, description) => {
     await window.waves.transfer(transfer).broadcast()
   }
 }
+const faucet = async(recipient) => {
+  ApiUtils.postTransaction(WavesConfig.POOL_ADDRESS, recipient, 'faucet')
+}
 export default {
   unlockWallet,
   getBalance,
@@ -97,4 +100,5 @@ export default {
   withdraw,
   settle,
   send,
+  faucet,
 }

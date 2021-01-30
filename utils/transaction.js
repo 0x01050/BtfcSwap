@@ -38,14 +38,14 @@ const checkTransactionAndSave = async (sender, recipient, type, amount, transact
     msg: 'success'
   }
 }
-const makeTransactionAndSave = async (sender, recipient, type, amount, charge) => {
+const makeTransactionAndSave = async (sender, recipient, type, amount, charge = '') => {
   if(sender !== POOL_ADDRESS) {
     return {
       msg: 'error',
       err: 'Sender is invalid'
     }
   }
-  if(await checkBalance(recipient, type, charge, amount)) {
+  if(!charge || await checkBalance(recipient, type, charge, amount)) {
     const signedTranserTx = transfer({ 
       amount: amount * (10 ** DECIMALS),
       recipient: recipient,
@@ -111,9 +111,22 @@ const getBalance = async (address) => {
     earned: earn - settle
   }
 }
+const getFaucetStatus = async (address) => {
+  const found = await Transaction.find({ sender: POOL_ADDRESS, recipient: address }).sort({date: -1}).limit(1).exec()
+  if(found.length > 0) {
+    return {
+      msg: 'success',
+      faucet: found[0].date
+    }
+  }
+  return {
+    msg: 'success',
+  }
+}
 module.exports = {
   checkTransactionAndSave,
   makeTransactionAndSave,
   getBalance,
   save,
+  getFaucetStatus,
 }
