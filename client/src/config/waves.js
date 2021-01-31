@@ -17,8 +17,12 @@ const ProviderUrls = {
   'prod': 'https://waves.exchange/signer/'
 }
 const explorerUrls = {
-  'testnet': 'https://testnet.wavesexplorer.com/address/',
-  'prod': 'https://wavesexplorer.com/address/'
+  'testnet': 'https://testnet.wavesexplorer.com',
+  'prod': 'https://wavesexplorer.com'
+}
+const apiUrls = {
+  'testnet': 'https://api.testnet.wavesplatform.com',
+  'prod': 'https://api.wavesplatform.com',
 }
 
 export default {
@@ -26,6 +30,7 @@ export default {
   NODE_URL: NodeUrls[REACT_APP_WAVES_PLATFORM],
   PROVIDER_URL: ProviderUrls[REACT_APP_WAVES_PLATFORM],
   EXPLORER_URL: explorerUrls[REACT_APP_WAVES_PLATFORM],
+  API_URL: apiUrls[REACT_APP_WAVES_PLATFORM],
   TOKEN_ID: REACT_APP_TOKEN_ASSET_ID,
   TOKEN_DECIMALS: parseInt(REACT_APP_TOKEN_ASSET_DECIMALS),
   WAVES_ID: WAVES_ASSET_ID,

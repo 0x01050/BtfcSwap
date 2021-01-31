@@ -25,6 +25,10 @@ const routes = [
     path: '/app/faucet',
     name: 'Faucet',
   },  
+  {
+    path: '/app/explorer',
+    name: 'Explorer',
+  }
 ]
 
 export default routes

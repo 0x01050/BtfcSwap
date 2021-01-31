@@ -1,4 +1,5 @@
 import axios from 'axios'
+import WavesConfig from '../config/waves'
 
 const postTransaction = (sender, recipient, type, amount = -1, transactionID = '') => {
   axios
@@ -51,9 +52,22 @@ const getFaucet = (address, callback) => {
       console.error(err)
     })
 }
+const getTransactions = (callback) => {
+  axios
+    .get(WavesConfig.API_URL + '/v0/transactions/transfer?limit=100&assetId=' + WavesConfig.TOKEN_ID)
+    .then(res => {
+      const {data} = res.data
+      if(callback) {
+        callback(data)
+      }
+    }).catch(err => {
+      console.error(err)
+    })
+}
 export default {
   postTransaction,
   getBalance,
   getPrice,
   getFaucet,
+  getTransactions,
 }

@@ -40,7 +40,7 @@ function Layout({walletState, walletActions, stakingActions}) {
   }
   const closeWallet = (mode) => {
     if(mode === 1) {
-      window.open(WavesConfig.EXPLORER_URL + walletState.address, "_blank")
+      window.open(WavesConfig.EXPLORER_URL + '/address/' + walletState.address, "_blank")
     }
     if(mode === 2) {
       lockWallet()
