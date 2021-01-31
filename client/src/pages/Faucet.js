@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Button } from '@windmill/react-ui'
 
+import BTFCLogo from '../assets/img/btfc.png'
 import PageTitle from '../components/Typography/PageTitle'
 import walletContainer from '../redux/containers/wallet'
 import ApiUtils from '../utils/api'
@@ -66,6 +67,20 @@ function Faucet({walletState, walletActions}) {
   return (
     <>
       <PageTitle>Faucet</PageTitle>
+      <div className="mt-4 mb-8 flex flex-col items-center">
+        <img
+          aria-hidden="true"
+          className="object-cover w-full h-full"
+          src={BTFCLogo}
+          style={{width: 128, height: 128}}
+          alt="B"
+        />
+        <div className="flex flex-col items-center">
+          <span className="text-sm font-semibold text-gray-400 dark:text-gray-600">BTFC Faucet</span>
+          <span className="font-bold dark:text-white">0.00025000 BTFC</span>
+          <span className="text-xs dark:text-white">Every 24 Hours</span>
+        </div>
+      </div>
       {
         walletState.locked ?
           <Button size="small" className="px-5 py-2" onClick={() => WavesUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>

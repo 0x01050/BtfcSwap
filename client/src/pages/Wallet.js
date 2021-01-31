@@ -45,7 +45,7 @@ function Wallet({walletState, walletActions}) {
                     className="object-cover w-full h-full"
                     src={BTFCLogo}
                     style={{width: 32, height: 32}}
-                    alt="W"
+                    alt="B"
                   />
                   <span className='dark:text-white font-semibold text-2xl ml-4'>BTFC</span>
                 </div>

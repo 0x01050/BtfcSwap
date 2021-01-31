@@ -5,11 +5,15 @@ const path = require('path')
 const transactions = require("./routes/api/transactions")
 const keys = require('./config/keys')
 
+Object.keys(keys).forEach(function(key) {
+  console.log(key + " : " + keys[key])
+})
+
 const db = require("./config/keys").mongoURI
 mongoose
   .connect(
     db,
-    { useNewUrlParser: true }
+    { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err))
@@ -29,7 +33,3 @@ app.use("/api/transactions", transactions)
 const port = process.env.PORT || 5000
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`))
-
-Object.keys(keys).forEach(function(key) {
-  console.log(key + " : " + keys[key])
-})
