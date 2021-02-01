@@ -56,6 +56,7 @@ function Swap({walletState, walletActions}) {
   return (
     <>
       <PageTitle>Swap</PageTitle>
+      <div className="flex justify-center">
       {
         walletState.locked ?
           <Button size="small" className="px-5 py-2" onClick={() => WavesUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>
@@ -88,7 +89,11 @@ function Swap({walletState, walletActions}) {
               />
             </div>
             <Label className='mt-4'>
-              <span>Swap Amount</span>
+              <div className="flex">
+                <span>Swap Amount</span>
+                <span style={{flex:1}}/>
+                <span>{getMaxAmount()}</span>
+              </div>
               <div className='relative text-gray-500'>
                 <input
                   className='block w-full pr-32 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus-within:text-purple-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input'
@@ -118,6 +123,7 @@ function Swap({walletState, walletActions}) {
             </Button>
           </div>
         }
+        </div>
     </>
   )
 }

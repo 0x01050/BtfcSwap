@@ -58,10 +58,10 @@ function Faucet({walletState, walletActions}) {
       let diff = (now - prev) / (1000 * 3600 * 24)
       if(diff < 1) {
         diff = (1000 * 3600 * 24) - (now - prev)
-        return 'Calim in ' + msToTime(diff)
+        return 'Claim in ' + msToTime(diff)
       }
     }
-    return 'Calim'
+    return 'Claim'
   }
 
   return (
@@ -81,6 +81,7 @@ function Faucet({walletState, walletActions}) {
           <span className="text-xs dark:text-white">Every 24 Hours</span>
         </div>
       </div>
+      <div className="flex justify-center">
       {
         walletState.locked ?
           <Button size="small" className="px-5 py-2" onClick={() => WavesUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>
@@ -97,6 +98,7 @@ function Faucet({walletState, walletActions}) {
             {getFaucetButtonTitle()}
           </Button>
       }
+      </div>
     </>
   )
 }

@@ -15,10 +15,11 @@ function Wallet({walletState, walletActions}) {
       <PageTitle>Wallet</PageTitle>
       {
         walletState.locked ?
-          <Button size="small" className="px-5 py-2" onClick={() => WavesUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>
-            Unlock Wallet
-          </Button>
-          
+          <div className="flex justify-center">
+            <Button size="small" className="px-5 py-2" onClick={() => WavesUtils.unlockWallet(walletActions.unlockWallet, walletActions.lockWallet)}>
+              Unlock Wallet
+            </Button>
+          </div>
         :
           <div className='grid mt-8 gap-6 md:grid-cols-2'>
             <Card>
