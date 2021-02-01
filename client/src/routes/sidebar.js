@@ -28,7 +28,11 @@ const routes = [
   {
     path: '/app/explorer',
     name: 'Explorer',
-  }
+  },  
+  {
+    path: '/app/swap',
+    name: 'Swap',
+  },
 ]
 
 export default routes

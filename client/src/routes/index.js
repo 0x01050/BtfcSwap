@@ -6,6 +6,7 @@ const Wallet = lazy(() => import('../pages/Wallet'))
 const Staking = lazy(() => import('../pages/Staking'))
 const Faucet = lazy(() => import('../pages/Faucet'))
 const Explorer = lazy(() => import('../pages/Explorer'))
+const Swap = lazy(() => import('../pages/Swap'))
 
 /**
  * ⚠ These are internal routes!
@@ -37,6 +38,10 @@ const routes = [
   {
     path: '/explorer',
     component: Explorer
+  },
+  {
+    path: '/swap',
+    component: Swap
   },
 ]
 

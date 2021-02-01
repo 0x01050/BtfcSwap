@@ -93,6 +93,46 @@ const send = async (recipient, amount, hasDesc, description) => {
 const faucet = async(recipient) => {
   ApiUtils.postTransaction(WavesConfig.POOL_ADDRESS, recipient, 'faucet')
 }
+const FromWavesToBtfc = async(amount) => {
+  try {
+    if(window.waves) {
+      await window.waves.invoke({
+        dApp: WavesConfig.POOL_ADDRESS,
+        payment: [{
+          assetId: null,
+          amount: amount * (10 ** WavesConfig.WAVES_DECIMALS)
+        }],
+        call:{
+          function: 'FromWavesToBtfc',
+          args: []
+        },
+        chainId: WavesConfig.CHAIN_ID
+      }).broadcast()
+    }
+  } catch(e) {
+    console.error(e)
+  }
+}
+const FromBtfcToWaves = async(amount) => {
+  try {
+    if(window.waves) {
+      await window.waves.invoke({
+        dApp: WavesConfig.POOL_ADDRESS,
+        payment: [{
+          assetId: WavesConfig.TOKEN_ID,
+          amount: amount * (10 ** WavesConfig.TOKEN_DECIMALS)
+        }],
+        call:{
+          function: 'FromBtfcToWaves',
+          args: []
+        },
+        chainId: WavesConfig.CHAIN_ID
+      }).broadcast()
+    }
+  } catch(e) {
+    console.error(e)
+  }
+}
 export default {
   unlockWallet,
   getBalance,
@@ -101,4 +141,6 @@ export default {
   settle,
   send,
   faucet,
+  FromWavesToBtfc,
+  FromBtfcToWaves,
 }

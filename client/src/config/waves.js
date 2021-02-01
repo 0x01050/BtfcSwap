@@ -24,6 +24,10 @@ const apiUrls = {
   'testnet': 'https://api.testnet.wavesplatform.com',
   'prod': 'https://api.wavesplatform.com',
 }
+const ChainIDs = {
+  'testnet': 'T',
+  'prod': 'W'
+}
 
 export default {
   WAVES_PLATFORM: REACT_APP_WAVES_PLATFORM,
@@ -35,5 +39,6 @@ export default {
   TOKEN_DECIMALS: parseInt(REACT_APP_TOKEN_ASSET_DECIMALS),
   WAVES_ID: WAVES_ASSET_ID,
   WAVES_DECIMALS: WAVES_DECIMALS,
-  POOL_ADDRESS: REACT_APP_TOKEN_POOL
+  POOL_ADDRESS: REACT_APP_TOKEN_POOL,
+  CHAIN_ID: ChainIDs[REACT_APP_WAVES_PLATFORM],
 }

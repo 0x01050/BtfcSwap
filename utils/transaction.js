@@ -52,6 +52,7 @@ const makeTransactionAndSave = async (sender, recipient, type, amount, charge = 
       assetId: AssetID,
       chainId: ChainID,
       version: 2,
+      fee: 500000,
     }, SEED)
     
     broadcast(signedTranserTx, NodeURL)

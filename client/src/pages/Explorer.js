@@ -29,7 +29,7 @@ function Explorer() {
   return (
     <>
       <PageTitle>Explorer</PageTitle>
-      <TableContainer>
+      <TableContainer className="mb-4">
         <Table>
           <TableHeader>
             <tr>
