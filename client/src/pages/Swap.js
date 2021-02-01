@@ -80,7 +80,7 @@ function Swap({walletState, walletActions}) {
                   style={{width: 32, height: 32, margin: '0 128px'}}
                   alt="<->"
                 />
-                <span className="text-sm mt-4">1 WAVE = {swapPrice} BTFC</span>
+                <span className="text-sm mt-4 dark:text-white">1 WAVE = {swapPrice} BTFC</span>
               </div>
               <img
                 aria-hidden="true"
