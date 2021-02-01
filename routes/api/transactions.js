@@ -1,7 +1,7 @@
 const express = require('express')
+const axios = require('axios')
 const router = express.Router()
 
-const POOL_ADDRESS = require('../../config/keys').poolAddr
 const SecretKey = require('../../config/keys').secretKey
 const TransactionUtils = require('../../utils/transaction')
 const validateAddressInput = require('../../validation/address')
@@ -70,6 +70,39 @@ router.post('/faucet', async (req, res) => {
     const {address} = req.body
     result = await TransactionUtils.getFaucetStatus(address)
     return res.status(200).json(result)
+  } catch(e) {
+    console.error(e)
+    return res.status(500)
+  }
+})
+const getSwapPrice = async () => {
+  try {
+    let resp = await axios.get('https://api.coingecko.com/api/v3/coins/bitcoin-flash-cash')
+    const btfcPrice = resp.data.market_data.current_price.usd
+    resp = await axios.get('https://api.coingecko.com/api/v3/coins/waves')
+    const wavesPrice = resp.data.market_data.current_price.usd
+    const rate = Math.floor(btfcPrice / wavesPrice * 100)
+    return rate
+  } catch(e) {
+    console.error(e)
+    return 200
+  }
+}
+router.post('/getSwapPrice', async (req, res) => {
+  try {
+    let rate = await getSwapPrice()
+    rate = Math.round(10000 / rate) / 100
+    return res.status(200).json(rate)
+  } catch(e) {
+    console.error(e)
+    return res.status(500)
+  }
+})
+router.post('/updateSwapPrice', async (req, res) => {
+  try {
+    const rate = await getSwapPrice()
+    await TransactionUtils.updatePrice(rate)
+    return res.status(200).json(rate)
   } catch(e) {
     console.error(e)
     return res.status(500)

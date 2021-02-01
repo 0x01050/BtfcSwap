@@ -32,8 +32,8 @@ const getPrice = (callback) => {
     .then(res => {
       try {
         callback(res.data.market_data.current_price.usd)
-      } catch(e) {
-
+      } catch(err) {
+        console.error(err)
       }
     })
 }
@@ -64,10 +64,22 @@ const getTransactions = (callback) => {
       console.error(err)
     })
 }
+const getSwapPrice = (callback) => {
+  axios
+    .post('/api/transactions/getSwapPrice')
+    .then(res => {
+      try {
+        callback(res.data)
+      } catch(err) {
+        console.error(err)
+      }
+    })
+}
 export default {
   postTransaction,
   getBalance,
   getPrice,
   getFaucet,
   getTransactions,
+  getSwapPrice,
 }

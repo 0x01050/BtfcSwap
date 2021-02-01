@@ -1,4 +1,4 @@
-const { broadcast, transfer } = require('@waves/waves-transactions')
+const { broadcast, data, transfer } = require('@waves/waves-transactions')
 const axios = require('axios')
 const Transaction = require('../models/Transaction')
 const AssetID = require('../config/keys').assetID
@@ -124,10 +124,26 @@ const getFaucetStatus = async (address) => {
     msg: 'success',
   }
 }
+const updatePrice = async (price) => {
+  const signedDataTx = data({
+    data: [{
+      key: 'WavesPerBtfc',
+      type: 'integer',
+      value: price
+    }],
+    chainId: ChainID,
+    fee: 500000
+  }, SEED)
+  broadcast(signedDataTx, NodeURL)
+    .catch(e => {
+      console.error(e)
+    })
+}
 module.exports = {
   checkTransactionAndSave,
   makeTransactionAndSave,
   getBalance,
   save,
   getFaucetStatus,
+  updatePrice,
 }

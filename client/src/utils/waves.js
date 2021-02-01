@@ -113,26 +113,6 @@ const FromWavesToBtfc = async(amount) => {
     console.error(e)
   }
 }
-const FromBtfcToWaves = async(amount) => {
-  try {
-    if(window.waves) {
-      await window.waves.invoke({
-        dApp: WavesConfig.POOL_ADDRESS,
-        payment: [{
-          assetId: WavesConfig.TOKEN_ID,
-          amount: amount * (10 ** WavesConfig.TOKEN_DECIMALS)
-        }],
-        call:{
-          function: 'FromBtfcToWaves',
-          args: []
-        },
-        chainId: WavesConfig.CHAIN_ID
-      }).broadcast()
-    }
-  } catch(e) {
-    console.error(e)
-  }
-}
 export default {
   unlockWallet,
   getBalance,
@@ -142,5 +122,4 @@ export default {
   send,
   faucet,
   FromWavesToBtfc,
-  FromBtfcToWaves,
 }
